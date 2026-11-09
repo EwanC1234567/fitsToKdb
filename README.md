@@ -2,7 +2,7 @@
 Created using the existing fitsToKdb repo from: https://github.com/jpneill/fitsToKdb <br>
 ./include/k.h can be found here: https://github.com/KxSystems/kdb/blob/master/c/c/k.h
 
-Both slightly modified to work better with the given example.
+Both slightly modified to work better with a given example.
 
 ## CFITSIO library
 fitsToKdb also requires the use of the CFITSIO library found here:
