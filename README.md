@@ -29,11 +29,11 @@ gcc -O2 -fPIC -shared \
 </pre>
 
 # Example
-A modern example of data was downloaded from https://www.sdss4.org/
+Examples can be found here https://www.sdss4.org/
 
-Model schema description can be found here https://data.sdss.org/datamodel/files/SPECTRO_REDUX/specObj.html
+Model schema description sample can be found here https://data.sdss.org/datamodel/files/SPECTRO_REDUX/specObj.html
 
-To import the module and run the example:
+To import the module and build the table:
 <pre>
 //To read in 500 rows from the second chunk(HDU) of data
 q)fitsToKdb:use`kx.fitsToKdb
