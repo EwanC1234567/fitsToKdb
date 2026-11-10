@@ -1,4 +1,4 @@
-# This kdb-x module for mapping astroPhysics fits files to kdb tables
+# kdb-x module for mapping astrophysics fits files to kdb tables
 Created using the existing fitsToKdb repo from: https://github.com/jpneill/fitsToKdb <br>
 ./include/k.h can be found here: https://github.com/KxSystems/kdb/blob/master/c/c/k.h
 
