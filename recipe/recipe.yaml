@@ -1,0 +1,42 @@
+context:
+  name: fd-cfitsiokdb
+  # The repo has no version tag yet; bump when one is created.
+  version: "0.1.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  # Builds from the working tree. Switch to a git tag/url for release builds.
+  path: ..
+
+build:
+  number: 0
+  script: build.sh
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - pkg-config
+  host:
+    - cfitsio
+  run:
+    # kdb-x / q is not on conda-forge, so it is a documented runtime requirement
+    # rather than a conda dependency. The module must be loaded inside a q session.
+    - cfitsio
+
+tests:
+  - script:
+      - test -f $PREFIX/share/fd.cfitsiokdb/fitsToKdb.so
+      - test -f $PREFIX/share/fd.cfitsiokdb/init.q
+
+about:
+  summary: kdb-x module that loads FITS astronomy table HDUs into kdb tables
+  description: |
+    fitsToKdb is a kdb-x module wrapping CFITSIO. It exposes createTab and
+    related functions that read binary/ASCII FITS table HDUs into q tables.
+    Requires a kdb-x / q installation to load.
+  homepage: https://github.com/EwanC1234567/fitsToKdb
+  license: LicenseRef-Unspecified
+  license_file: []

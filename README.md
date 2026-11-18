@@ -36,13 +36,13 @@ Model schema description sample can be found here https://data.sdss.org/datamode
 To import the module and build the table:
 <pre>
 //To read in 500 rows from the second chunk(HDU) of data
-q)fitsToKdb:use`kx.fitsToKdb
+q)fitsToKdb:use`fd.cfitsiokdb
 q)tab:fitsToKdb.createPartialTab[`$"example/example1.fits";500;2]
 q)count tab
 500
 
 //to get the full tab
-q)fitsToKdb:use`kx.fitsToKdb
+q)fitsToKdb:use`fd.cfitsiokdb
 q)tab:fitsToKdb.createTab[`$"example/example1.fits";0;2]
 q)count tab
 1843200
@@ -53,7 +53,7 @@ Typically the first HDU in these types of files is an image, which is outside th
 
 As such, the below error will appear 
 <pre>
-q)fitsToKdb:use`kx.fitsToKdb
+q)fitsToKdb:use`fd.cfitsiokdb
 q)tab:fitsToKdb.createTab[`$"example/example1.fits";500;1]
 'Unable to open FITS table
 </pre>
