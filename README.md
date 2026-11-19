@@ -4,6 +4,75 @@ Created using the existing fitsToKdb repo from: https://github.com/jpneill/fitsT
 
 Both slightly modified to work better with a given example.
 
+# Install using qmamba
+
+!!! note Building artefacts
+     More information about how to use qmamba and build conda artefacts can be found on the [qmamba wiki](https://github.com/KxSystems/qmamba/wiki/Build)
+
+Build the artefacts:
+```bash
+micromamba create --name build
+micromamba activate build
+cd recipe
+rattler-build build
+mkdir /tmp/mychannel
+rattler-index -f fs /tmp/mychannel/
+rattler-build publish  output/linux-64/fd-cfitsiokdb-*.conda  --to file:///tmp/mychannel
+```
+
+Install the module:
+```q
+q)qmamba:use`kx.qmamba
+q)qmamba.create "fd"
+q)qmamba.activate "fd"
+q) / search for the module, notice the dependency on cfitsio
+q)qmamba.search `SPECS`CHANNEL`PRETTY!(enlist"fd*";enlist"/tmp/mychannel/";1)
+Getting repodata from channels...
+
+file:///tmp/mychannel/linux-64                      ??.?MB @  ??.?MB/s  0.0s
+file:///tmp/mychannel/noarch                        ??.?MB @  ??.?MB/s  0.0s
+     fd-cfitsiokdb 0.1.0 hb0f4dca_0
+────────────────────────────────────────
+
+ Name            fd-cfitsiokdb
+ Version         0.1.0
+ Build           hb0f4dca_0
+ Size            13 kB
+ License         LicenseRef-Unspecified
+ Subdir          linux-64
+ File Name       fd-cfitsiokdb-0.1.0-hb0f4dca_0.conda
+ URL             file:///tmp/mychannel/linux-64/fd-cfitsiokdb-0.1.0-hb0f4dca_0.conda
+ MD5             2f2201210d9ad0f465f4dc9f3934bdf6
+ SHA256          a91a1d0fdfe3e137764b29ea8783c25803c6ead25e8e09cbd38e3ab07a0dc391
+
+ Dependencies:
+  - cfitsio
+  - libgcc >=16
+  - cfitsio >=4.7.0,<4.7.1.0a0
+
+q)/ include conda-forge in the channels to pick up cfitsio
+q)qmamba.install `SPECS`CHANNEL!(enlist"fd-cfitsiokdb";("/tmp/mychannel/";"conda-forge"))
+q)
+q)/ use the module
+q)cfitsio:use`fd.cfitsiokdb
+q)cfitsio
+listHDUs       | code
+getFitsRowCount| code
+getFitsColCount| code
+getFitsColNames| code
+getFitsColType | code
+readLongCol    | code
+readDoubleCol  | code
+readIntCol     | code
+readSymCol     | code
+createTab      | {[f;n;hn]
+  // Get number of cols in table
+  nc:getFitsColCount[f;hn];
+  // If n=0..s
+```
+
+# Install from source
+
 ## CFITSIO library
 fitsToKdb also requires the use of the CFITSIO library found here:
 https://heasarc.gsfc.nasa.gov/docs/software/fitsio/ <br>
