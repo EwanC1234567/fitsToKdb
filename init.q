@@ -1,13 +1,13 @@
 //fitsToKdb kdb-x module
-listHDUs:`fitsToKdb 2:(`listHDUs;1);
-getFitsRowCount:`fitsToKdb 2:(`num_rows;2);
-getFitsColCount:`fitsToKdb 2:(`num_cols;2);
-getFitsColNames:`fitsToKdb 2:(`cols;2);
-getFitsColType:`fitsToKdb 2:(`getColType;3);
-readLongCol:`fitsToKdb 2:(`readLongCol;4);
-readDoubleCol:`fitsToKdb 2:(`readDoubleCol;4);
-readIntCol:`fitsToKdb 2:(`readIntCol;4);
-readSymCol:`fitsToKdb 2:(`readSymCol;4);
+listHDUs:`init 2:(`listHDUs;1);
+getFitsRowCount:`init 2:(`num_rows;2);
+getFitsColCount:`init 2:(`num_cols;2);
+getFitsColNames:`init 2:(`cols;2);
+getFitsColType:`init 2:(`getColType;3);
+readLongCol:`init 2:(`readLongCol;4);
+readDoubleCol:`init 2:(`readDoubleCol;4);
+readIntCol:`init 2:(`readIntCol;4);
+readSymCol:`init 2:(`readSymCol;4);
 
 ///
 // createTab creates a table of astronomy data from a given fits file, the hdu to reference and the number of lines to load
