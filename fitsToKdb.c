@@ -354,3 +354,27 @@ K readSymCol(K x,K y,K z,K h)
     }
   return list;
 }
+
+/********************************************************************
+* Name       :  K kexport(K x)
+* Description:  Entry point used by kdb-x when the module library is loaded with
+*               use`.clib. Returns a dictionary of exported function names to
+*               native functions, with their arities.
+*/
+K1(kexport)
+{
+  static const S names[]={"listHDUs","num_rows","num_cols","cols","getColType",
+                          "readLongCol","readDoubleCol","readIntCol","readSymCol"};
+  static V *fns[]={(V*)listHDUs,(V*)num_rows,(V*)num_cols,(V*)cols,(V*)getColType,
+                   (V*)readLongCol,(V*)readDoubleCol,(V*)readIntCol,(V*)readSymCol};
+  static const J arities[]={1,2,2,2,3,4,4,4,4};
+  int n=sizeof(names)/sizeof(names[0]),i;
+  K keys=ktn(KS,n);
+  K functions=ktn(0,n);
+  for(i=0;i<n;i++)
+    {
+      kS(keys)[i]=ss(names[i]);
+      kK(functions)[i]=dl(fns[i],arities[i]);
+    }
+  R xD(keys,functions);
+}
