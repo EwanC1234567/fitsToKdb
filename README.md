@@ -18,15 +18,24 @@ pkg-config --modversion cfitsio
 pkg-config --cflags --libs cfitsio
 </pre>
 
-### Optional - if a new install is needed for fitsToKdb.so
+### Optional - if a new install is needed for clib.li64.so
+The module loads its native library with `use`.clib`, so the build output must be named `clib.li64.so` (x86-64 Linux).
 <pre>
 gcc -O2 -fPIC -shared \
   $(pkg-config --cflags cfitsio) \
   -I./include \
   fitsToKdb.c \
-  -o fitsToKdb.so \
+  -o clib.li64.so \
   $(pkg-config --libs cfitsio)
 </pre>
+
+### Installing the module
+Copy `init.q` and `clib.li64.so` into a `fd/cfitsiokdb` directory on your `QPATH`, for example:
+<pre>
+mkdir -p ~/.kx/mod/fd/cfitsiokdb
+cp init.q clib.li64.so ~/.kx/mod/fd/cfitsiokdb/
+</pre>
+Then load it in q with ``use`fd.cfitsiokdb``.
 
 # Example
 Examples can be found here https://www.sdss4.org/
