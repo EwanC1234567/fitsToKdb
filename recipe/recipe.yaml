@@ -28,8 +28,8 @@ requirements:
 
 tests:
   - script:
-      - test -f $PREFIX/share/fd.cfitsiokdb/fitsToKdb.so
-      - test -f $PREFIX/share/fd.cfitsiokdb/init.q
+      - test -f $PREFIX/lib/q/mod/fd/cfitsiokdb/init.li64.so
+      - test -f $PREFIX/lib/q/mod/fd/cfitsiokdb/init.q
 
 about:
   summary: kdb-x module that loads FITS astronomy table HDUs into kdb tables
