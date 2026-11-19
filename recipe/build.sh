@@ -13,10 +13,10 @@ ${CC:-cc} -O2 -fPIC -shared \
   ${CFLAGS_CFITSIO} \
   -I./include \
   fitsToKdb.c \
-  -o init.li64.so \
+  -o clib.li64.so \
   ${LIBS_CFITSIO}
 
 INSTALL_DIR="${PREFIX}/lib/q/mod/fd/cfitsiokdb"
 mkdir -p "${INSTALL_DIR}"
-install -m 0755 init.li64.so "${INSTALL_DIR}/init.li64.so"
+install -m 0755 clib.li64.so "${INSTALL_DIR}/clib.li64.so"
 install -m 0644 init.q "${INSTALL_DIR}/init.q"

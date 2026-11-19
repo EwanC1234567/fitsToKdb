@@ -28,7 +28,7 @@ requirements:
 
 tests:
   - script:
-      - test -f $PREFIX/lib/q/mod/fd/cfitsiokdb/init.li64.so
+      - test -f $PREFIX/lib/q/mod/fd/cfitsiokdb/clib.li64.so
       - test -f $PREFIX/lib/q/mod/fd/cfitsiokdb/init.q
 
 about:

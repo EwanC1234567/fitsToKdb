@@ -1,13 +1,14 @@
-//fitsToKdb kdb-x module
-listHDUs:`init 2:(`listHDUs;1);
-getFitsRowCount:`init 2:(`num_rows;2);
-getFitsColCount:`init 2:(`num_cols;2);
-getFitsColNames:`init 2:(`cols;2);
-getFitsColType:`init 2:(`getColType;3);
-readLongCol:`init 2:(`readLongCol;4);
-readDoubleCol:`init 2:(`readDoubleCol;4);
-readIntCol:`init 2:(`readIntCol;4);
-readSymCol:`init 2:(`readSymCol;4);
+//fd.cfitsiokdb module: native functions are loaded from clib (clib.li64.so) via kexport
+clib:use`.clib;
+listHDUs:clib.listHDUs;
+getFitsRowCount:clib.num_rows;
+getFitsColCount:clib.num_cols;
+getFitsColNames:clib.cols;
+getFitsColType:clib.getColType;
+readLongCol:clib.readLongCol;
+readDoubleCol:clib.readDoubleCol;
+readIntCol:clib.readIntCol;
+readSymCol:clib.readSymCol;
 
 ///
 // createTab creates a table of astronomy data from a given fits file, the hdu to reference and the number of lines to load
